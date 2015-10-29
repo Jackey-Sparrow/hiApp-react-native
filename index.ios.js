@@ -12,15 +12,23 @@ var {
   View,
 } = React;
 
+var Introduction = [
+  {
+    name:'Jackey',
+    age:26
+  }
+];
+
 var hiAppReactNative = React.createClass({
   render: function() {
+    var introduction = Introduction[0];
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          {introduction.name}
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
