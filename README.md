@@ -11,7 +11,7 @@ ios
 open ios/xxxx.xcodeproj
 run
 ```
-android
+android(still hold on)
 ```
 react-native run-android
 ```
