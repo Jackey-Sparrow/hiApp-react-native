@@ -11,6 +11,7 @@ var {
     Text,
     View,
     Image,
+    ListView,
     } = React;
 
 var REQUEST_URL = 'https://raw.githubusercontent.com/Jackey-Sparrow/hiApp-react-native/master/data/userList.json';
@@ -18,7 +19,13 @@ var REQUEST_URL = 'https://raw.githubusercontent.com/Jackey-Sparrow/hiApp-react-
 var hiAppReactNative = React.createClass({
     getInitialState: function () {
         return {
-            userList: null
+            userList: null,
+            dataSource: new ListView.DataSource({
+                rowHasChanged: function (row1, row2) {
+                    return row1 !== row2;
+                }
+            }),
+            loaded: false
         };
     },
     fetchData: function () {
@@ -27,7 +34,9 @@ var hiAppReactNative = React.createClass({
             return response.json();
         }).then(function (responseData) {
             that.setState({
-                userList: responseData
+                userList: responseData,
+                dataSource: that.state.dataSource.cloneWithRows(responseData),
+                loaded: true
             });
         }).done();
     },
@@ -53,12 +62,16 @@ var hiAppReactNative = React.createClass({
         );
     },
     render: function () {
-        if(!this.state.userList){
+        if (!this.state.loaded) {
             return this.renderLoadingView();
         }
 
-        var user = this.state.userList[0];
-        return this.renderUser(user);
+        return (
+            <ListView
+                dataSource={this.state.dataSource}
+                renderRow={this.renderUser}
+                />
+        );
     }
 });
 
@@ -79,6 +92,10 @@ var styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
+    listView: {
+        paddingTop: 20,
+        backgroundColor: '#F5FCFF',
+    }
 });
 
 AppRegistry.registerComponent('hiAppReactNative', () => hiAppReactNative);
