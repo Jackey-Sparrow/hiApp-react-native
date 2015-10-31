@@ -84,10 +84,15 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+        flexDirection: 'row',
     },
     thumbnail: {
         width: 53,
         height: 81,
+    },
+    rightContainer: {
+        flex: 1,
+        textAlign: 'center'
     },
     welcome: {
         fontSize: 20,
