@@ -53,7 +53,10 @@ var hiAppReactNative = React.createClass({
     renderUser: function (user) {
         return (
             <View style={styles.container}>
-                <Image source={{uri:user.photoUrl}}/>
+                <Image
+                    source={{uri:user.photoUrl}}
+                    style={styles.thumbnail}
+                    />
                 <View style={styles.rightContainer}>
                     <Text>{user.userName}</Text>
                     <Text>{user.age}</Text>
@@ -81,6 +84,10 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+    },
+    thumbnail: {
+        width: 53,
+        height: 81,
     },
     welcome: {
         fontSize: 20,
