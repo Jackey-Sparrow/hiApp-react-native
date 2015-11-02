@@ -5,6 +5,7 @@
 'use strict';
 
 var React = require('react-native');
+
 var {
     AppRegistry,
     StyleSheet,
@@ -17,6 +18,7 @@ var {
 var REQUEST_URL = 'https://raw.githubusercontent.com/Jackey-Sparrow/hiApp-react-native/master/data/userList.json';
 
 var hiAppReactNative = React.createClass({
+
     getInitialState: function () {
         return {
             userList: null,
